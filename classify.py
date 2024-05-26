@@ -1,5 +1,6 @@
 from collections import defaultdict
 import sys
+import os
 
 def classify_contig(description):
     attributes = {part.split(':')[0]: part.split(':')[1] for part in description.split()[2:]}
@@ -45,6 +46,16 @@ def classify(input_fasta, output_fasta):
                     elif found_contig and seq_line.startswith('>'):
                         break
 
+def get_output_directory():
+
+    output_dir = 'C:/Users/user/Desktop/classify/out'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    return output_dir
+
+
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python script.py <input_fasta> <output_fasta>")
@@ -52,5 +63,7 @@ if __name__ == "__main__":
 
     input_fasta = sys.argv[1]
     output_fasta = sys.argv[2]
+    output_directory = get_output_directory()
+    output_fasta = os.path.join(output_directory, output_fasta)
     classify(input_fasta, output_fasta)
     print(f"Results written to {output_fasta}")
