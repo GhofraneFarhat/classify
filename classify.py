@@ -46,11 +46,6 @@ def classify(input_fasta, output_fasta):
                     elif found_contig and seq_line.startswith('>'):
                         break
 
-
-
-
-
-
 if __name__ == "__main__":
 
     if len(sys.argv) != 3:
@@ -60,24 +55,15 @@ if __name__ == "__main__":
     input_fasta = sys.argv[1] #get the input file
     output_fasta = sys.argv[2] #get the output file
 
-<<<<<<< HEAD
     
-=======
-
-
->>>>>>> c52a06a2f88efda9192486a3fb1fe0c5ceb019f0
     output_directory = os.path.dirname(output_fasta) #get the directory where the file want to be saved
 
     #check if the file of the path is created else create the path
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-<<<<<<< HEAD
     
 
 
-=======
-        
->>>>>>> c52a06a2f88efda9192486a3fb1fe0c5ceb019f0
     classify(input_fasta, output_fasta)
     print(f"Results written to {output_fasta}")
 
