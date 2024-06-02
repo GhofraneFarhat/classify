@@ -1,6 +1,7 @@
 from collections import defaultdict
 import sys
 import os
+import argparse
 
 def classify_contig(description):
     attributes = {part.split(':')[0]: part.split(':')[1] for part in description.split()[2:]}
@@ -48,20 +49,16 @@ def classify(input_fasta, output_fasta):
 
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Classify contigs in a FASTA file.")
+    parser.add_argument("-i", "--input", help="Input FASTA file", required=True)
+    parser.add_argument("-o", "--output", help="Output file path", required=True)
+    args = parser.parse_args()
 
+    input_fasta = args.input
+    output_fasta = args.output
 
-
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python script.py <input_fasta> <output_path>")
-        sys.exit(1)
-
-    input_fasta = sys.argv[1] #get the input file
-    output_fasta = sys.argv[2] #get the output file
-
-
-
-    output_directory = os.path.dirname(output_fasta) #get the directory where the file want to be saved
+    output_directory = os.path.dirname(output_fasta)
 
     #check if the file of the path is created else create the path
     if not os.path.exists(output_directory):
@@ -69,3 +66,7 @@ if __name__ == "__main__":
         
     classify(input_fasta, output_fasta)
     print(f"Results written to {output_fasta}")
+
+
+if __name__ == "__main__":
+    main()
