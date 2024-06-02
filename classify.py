@@ -63,7 +63,9 @@ def main():
     #check if the file of the path is created else create the path
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-        
+    
+
+
     classify(input_fasta, output_fasta)
     print(f"Results written to {output_fasta}")
 
